@@ -57,8 +57,8 @@ public class FrontControllerServletV5 extends HttpServlet {
             return;
         }
 
-        MyHandlerAdapter adapter = getHandlerAdapter(handler);
-        ModelView mv = adapter.handle(request, response, handler);
+        MyHandlerAdapter adapter = getHandlerAdapter(handler);          // MyHandlerAdapter 인터페이스 이용하는게 핵심
+        ModelView mv = adapter.handle(request, response, handler);      // ocp 를 지킬 수 잇는것, 다형성
         String viewName = mv.getViewName(); // 아직 논리이름
         MyView view = viewResolver(viewName);   // 여기서 물리이름 얻음
         view.render(mv.getModel(), request, response);
